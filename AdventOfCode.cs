@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -13,6 +13,7 @@ namespace AdventOfCode2020
         {
             foreach (var adventDay in GetAdventDays())
             {
+                Console.WriteLine($"{(adventDay.Day > 1 ? "\n" : string.Empty)}Solution for {adventDay.Day:D2}.12.2020");
                 var input = await LoadInputForDayAsync(adventDay.Day);
                 adventDay.Solve(input);
             }
@@ -23,7 +24,7 @@ namespace AdventOfCode2020
             return new IAdventDay[]
             {
                 new Day01(),
-                new Day01()
+                new Day02(),
             };
         }
 
