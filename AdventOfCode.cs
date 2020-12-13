@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -9,20 +9,25 @@ namespace AdventOfCode2020
 {
     class AdventOfCode
     {
-        static async Task Main(string[] args)
+        static async Task Main()
         {
-            new Day01().Solve(await LoadInputForDay(1));
+            foreach (var adventDay in GetAdventDays())
+            {
+                var input = await LoadInputForDayAsync(adventDay.Day);
+                adventDay.Solve(input);
+            }
         }
 
         private static IEnumerable<IAdventDay> GetAdventDays()
         {
             return new IAdventDay[]
             {
+                new Day01(),
                 new Day01()
             };
         }
 
-        private static Task<string[]> LoadInputForDay(int day)
+        private static Task<string[]> LoadInputForDayAsync(int day)
         {
             return File.ReadAllLinesAsync($"./Input/day-{day:D2}.txt");
         }

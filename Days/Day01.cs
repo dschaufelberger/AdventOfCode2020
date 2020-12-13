@@ -8,6 +8,8 @@ namespace AdventOfCode2020.Days
 {
     internal class Day01 : IAdventDay
     {
+        public int Day => 1;
+
         public void Solve(string[] input)
         {
             var inputNumbers = input.Select(text => int.Parse(text));
