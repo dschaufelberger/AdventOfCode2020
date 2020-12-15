@@ -25,6 +25,7 @@ namespace AdventOfCode2020
             {
                 new Day01(),
                 new Day02(),
+                new Day03(),
             };
         }
 
