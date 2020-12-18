@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 using AdventOfCode2020.Days;
@@ -21,12 +22,12 @@ namespace AdventOfCode2020
 
         private static IEnumerable<IAdventDay> GetAdventDays()
         {
-            return new IAdventDay[]
-            {
-                new Day01(),
-                new Day02(),
-                new Day03(),
-            };
+            var dayClassFiles = new DirectoryInfo("./Days").GetFiles("Day*.cs");
+
+            var adventDays = dayClassFiles
+                .Select(classFile => (IAdventDay)Activator.CreateInstance(null, $"AdventOfCode2020.Days.{Path.GetFileNameWithoutExtension(classFile.Name)}").Unwrap());
+
+            return adventDays.ToArray();
         }
 
         private static Task<string[]> LoadInputForDayAsync(int day)
